@@ -1,0 +1,2443 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/sheetTheme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/sheet.gd" type="Script" id=2]
+[ext_resource path="res://scripts/info.gd" type="Script" id=3]
+[ext_resource path="res://scripts/virtues.gd" type="Script" id=4]
+[ext_resource path="res://scripts/vices.gd" type="Script" id=5]
+[ext_resource path="res://subElements/attribute.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/tech.gd" type="Script" id=7]
+[ext_resource path="res://scripts/basic.gd" type="Script" id=8]
+[ext_resource path="res://scripts/art.gd" type="Script" id=9]
+[ext_resource path="res://scripts/misc.gd" type="Script" id=10]
+[ext_resource path="res://subElements/merit.tscn" type="PackedScene" id=11]
+[ext_resource path="res://subElements/dot.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scripts/textsave.gd" type="Script" id=13]
+[ext_resource path="res://scripts/size.gd" type="Script" id=14]
+[ext_resource path="res://scripts/equipment.gd" type="Script" id=15]
+[ext_resource path="res://subElements/healthBox.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scripts/energy.gd" type="Script" id=18]
+[ext_resource path="res://scripts/moral.gd" type="Script" id=19]
+[ext_resource path="res://assets/styleboxes/white_dark.tres" type="StyleBox" id=20]
+[ext_resource path="res://assets/styleboxes/white_line.tres" type="StyleBox" id=21]
+[ext_resource path="res://scripts/age.gd" type="Script" id=22]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 1 )
+
+[node name="base" type="Panel"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="scroll" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_deadzone = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="MarginContainer" parent="scroll"]
+margin_right = 1020.0
+margin_bottom = 960.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 42
+custom_constants/margin_top = 21
+custom_constants/margin_left = 42
+custom_constants/margin_bottom = 21
+
+[node name="org" type="VBoxContainer" parent="scroll/margin"]
+margin_left = 42.0
+margin_top = 21.0
+margin_right = 978.0
+margin_bottom = 939.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="title" type="Label" parent="scroll/margin/org"]
+margin_right = 936.0
+margin_bottom = 56.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.25
+custom_fonts/font = SubResource( 2 )
+align = 2
+valign = 2
+
+[node name="info" type="HBoxContainer" parent="scroll/margin/org"]
+margin_top = 60.0
+margin_right = 936.0
+margin_bottom = 128.0
+size_flags_horizontal = 5
+alignment = 1
+
+[node name="details" type="VBoxContainer" parent="scroll/margin/org/info"]
+visible = false
+margin_right = 204.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="age" type="HBoxContainer" parent="scroll/margin/org/info/details"]
+margin_right = 204.0
+margin_bottom = 20.0
+script = ExtResource( 3 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/details/age"]
+margin_right = 48.0
+margin_bottom = 20.0
+size_flags_vertical = 7
+text = "Age : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/details/age"]
+margin_left = 52.0
+margin_right = 204.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "35"
+align = 2
+placeholder_alpha = 1.0
+caret_blink = true
+
+[node name="faction" type="HBoxContainer" parent="scroll/margin/org/info/details"]
+margin_top = 24.0
+margin_right = 204.0
+margin_bottom = 44.0
+script = ExtResource( 3 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/details/faction"]
+margin_right = 80.0
+margin_bottom = 20.0
+size_flags_vertical = 7
+text = "Faction : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/details/faction"]
+margin_left = 84.0
+margin_right = 204.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 3
+placeholder_alpha = 1.0
+caret_blink = true
+
+[node name="group" type="HBoxContainer" parent="scroll/margin/org/info/details"]
+margin_top = 48.0
+margin_right = 204.0
+margin_bottom = 68.0
+script = ExtResource( 3 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/details/group"]
+margin_right = 104.0
+margin_bottom = 20.0
+size_flags_vertical = 7
+text = "Group Name : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/details/group"]
+margin_left = 108.0
+margin_right = 204.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 3
+placeholder_alpha = 1.0
+caret_blink = true
+
+[node name="sep" type="Control" parent="scroll/margin/org/info"]
+margin_right = 309.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+
+[node name="concept" type="VBoxContainer" parent="scroll/margin/org/info"]
+visible = false
+margin_left = 46.0
+margin_right = 466.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="virtue" type="HBoxContainer" parent="scroll/margin/org/info/concept"]
+margin_right = 420.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="scroll/margin/org/info/concept/virtue"]
+margin_right = 64.0
+margin_bottom = 20.0
+size_flags_vertical = 7
+text = "Virtue: "
+valign = 2
+
+[node name="menu" type="OptionButton" parent="scroll/margin/org/info/concept/virtue"]
+margin_left = 68.0
+margin_right = 420.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+toggle_mode = false
+script = ExtResource( 4 )
+
+[node name="vice" type="HBoxContainer" parent="scroll/margin/org/info/concept"]
+margin_top = 24.0
+margin_right = 420.0
+margin_bottom = 44.0
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="scroll/margin/org/info/concept/vice"]
+margin_right = 48.0
+margin_bottom = 20.0
+size_flags_vertical = 7
+text = "Vice: "
+valign = 2
+
+[node name="menu" type="OptionButton" parent="scroll/margin/org/info/concept/vice"]
+margin_left = 52.0
+margin_right = 420.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+toggle_mode = false
+script = ExtResource( 5 )
+
+[node name="sep2" type="Control" parent="scroll/margin/org/info"]
+margin_left = 313.0
+margin_right = 622.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+
+[node name="player" type="VBoxContainer" parent="scroll/margin/org/info"]
+margin_left = 626.0
+margin_right = 936.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="name" type="HBoxContainer" parent="scroll/margin/org/info/player"]
+margin_right = 310.0
+margin_bottom = 20.0
+script = ExtResource( 3 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/player/name"]
+margin_right = 178.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Player Name : "
+align = 2
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/player/name"]
+margin_left = 182.0
+margin_right = 310.0
+margin_bottom = 20.0
+size_flags_vertical = 6
+text = "Moustafa Chamli"
+expand_to_text_length = true
+placeholder_alpha = 1.0
+caret_blink = true
+
+[node name="concept" type="HBoxContainer" parent="scroll/margin/org/info/player"]
+margin_top = 24.0
+margin_right = 310.0
+margin_bottom = 44.0
+script = ExtResource( 3 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/player/concept"]
+margin_right = 98.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Concept : "
+align = 2
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/player/concept"]
+margin_left = 102.0
+margin_right = 310.0
+margin_bottom = 20.0
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+text = "Game & Narrative Designer"
+expand_to_text_length = true
+caret_blink = true
+
+[node name="age" type="HBoxContainer" parent="scroll/margin/org/info/player"]
+margin_top = 48.0
+margin_right = 310.0
+margin_bottom = 68.0
+script = ExtResource( 22 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/player/age"]
+margin_right = 210.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 2
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/player/age"]
+margin_left = 214.0
+margin_right = 310.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+expand_to_text_length = true
+placeholder_alpha = 1.0
+caret_blink = true
+
+[node name="chronicle" type="HBoxContainer" parent="scroll/margin/org/info/player"]
+visible = false
+margin_top = 24.0
+margin_right = 287.0
+margin_bottom = 44.0
+script = ExtResource( 3 )
+
+[node name="label" type="Label" parent="scroll/margin/org/info/player/chronicle"]
+margin_right = 96.0
+margin_bottom = 20.0
+size_flags_vertical = 7
+text = "Chronicle : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/info/player/chronicle"]
+margin_left = 100.0
+margin_right = 287.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+align = 3
+placeholder_alpha = 1.0
+caret_blink = true
+
+[node name="sep3" type="Control" parent="scroll/margin/org/info"]
+visible = false
+margin_left = 906.0
+margin_right = 936.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="attrLBL" type="Label" parent="scroll/margin/org"]
+margin_top = 132.0
+margin_right = 936.0
+margin_bottom = 165.0
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.05
+text = "Attributes"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ATTRIBUTES" type="HBoxContainer" parent="scroll/margin/org"]
+margin_top = 169.0
+margin_right = 936.0
+margin_bottom = 234.0
+size_flags_horizontal = 5
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="labels" type="VBoxContainer" parent="scroll/margin/org/ATTRIBUTES"]
+margin_right = 117.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="pow" type="Label" parent="scroll/margin/org/ATTRIBUTES/labels"]
+margin_right = 117.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Power"
+align = 2
+valign = 1
+
+[node name="fin" type="Label" parent="scroll/margin/org/ATTRIBUTES/labels"]
+margin_top = 23.0
+margin_right = 117.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Finesse"
+align = 2
+valign = 1
+
+[node name="resist" type="Label" parent="scroll/margin/org/ATTRIBUTES/labels"]
+margin_top = 46.0
+margin_right = 117.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Resistance"
+align = 2
+valign = 1
+
+[node name="sep3" type="Control" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 121.0
+margin_right = 132.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="mental" type="VBoxContainer" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 136.0
+margin_right = 371.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="INTELLIGENCE" parent="scroll/margin/org/ATTRIBUTES/mental" instance=ExtResource( 6 )]
+margin_right = 235.0
+margin_bottom = 19.0
+
+[node name="WITS" parent="scroll/margin/org/ATTRIBUTES/mental" instance=ExtResource( 6 )]
+margin_top = 23.0
+margin_right = 235.0
+margin_bottom = 42.0
+
+[node name="RESOLVE" parent="scroll/margin/org/ATTRIBUTES/mental" instance=ExtResource( 6 )]
+margin_top = 46.0
+margin_right = 235.0
+margin_bottom = 65.0
+
+[node name="sep" type="Control" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 375.0
+margin_right = 398.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="physical" type="VBoxContainer" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 402.0
+margin_right = 637.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="STRENGTH" parent="scroll/margin/org/ATTRIBUTES/physical" instance=ExtResource( 6 )]
+margin_right = 235.0
+margin_bottom = 19.0
+
+[node name="DEXTERITY" parent="scroll/margin/org/ATTRIBUTES/physical" instance=ExtResource( 6 )]
+margin_top = 23.0
+margin_right = 235.0
+margin_bottom = 42.0
+
+[node name="STAMINA" parent="scroll/margin/org/ATTRIBUTES/physical" instance=ExtResource( 6 )]
+margin_top = 46.0
+margin_right = 235.0
+margin_bottom = 65.0
+
+[node name="sep2" type="Control" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 641.0
+margin_right = 664.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="social" type="VBoxContainer" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 668.0
+margin_right = 903.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PRESENCE" parent="scroll/margin/org/ATTRIBUTES/social" instance=ExtResource( 6 )]
+margin_right = 235.0
+margin_bottom = 19.0
+
+[node name="CHARISMA" parent="scroll/margin/org/ATTRIBUTES/social" instance=ExtResource( 6 )]
+margin_top = 23.0
+margin_right = 235.0
+margin_bottom = 42.0
+
+[node name="COMPOSURE" parent="scroll/margin/org/ATTRIBUTES/social" instance=ExtResource( 6 )]
+margin_top = 46.0
+margin_right = 235.0
+margin_bottom = 65.0
+
+[node name="sep4" type="Control" parent="scroll/margin/org/ATTRIBUTES"]
+margin_left = 907.0
+margin_right = 936.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="advantages" type="HBoxContainer" parent="scroll/margin/org"]
+margin_top = 238.0
+margin_right = 936.0
+margin_bottom = 918.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SKILLS" type="VBoxContainer" parent="scroll/margin/org/advantages"]
+margin_right = 266.0
+margin_bottom = 680.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/SKILLS"]
+margin_right = 266.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.06
+text = "Skills"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="art" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS"]
+margin_top = 23.0
+margin_right = 266.0
+margin_bottom = 137.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/SKILLS/art"]
+margin_top = 45.0
+margin_right = 266.0
+margin_bottom = 64.0
+size_flags_vertical = 6
+text = "label"
+align = 1
+
+[node name="penalty" type="Label" parent="scroll/margin/org/advantages/SKILLS/art"]
+visible = false
+margin_top = 18.0
+margin_right = 240.0
+margin_bottom = 32.0
+size_flags_vertical = 6
+text = "(-1 Unskilled)"
+align = 1
+valign = 1
+
+[node name="list" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS/art"]
+margin_top = 114.0
+margin_right = 266.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+
+[node name="technology" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS"]
+margin_top = 141.0
+margin_right = 266.0
+margin_bottom = 255.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/SKILLS/technology"]
+margin_right = 266.0
+margin_bottom = 19.0
+size_flags_vertical = 2
+text = "label"
+align = 1
+
+[node name="penalty" type="Label" parent="scroll/margin/org/advantages/SKILLS/technology"]
+visible = false
+margin_top = 23.0
+margin_right = 266.0
+margin_bottom = 42.0
+size_flags_vertical = 2
+text = "( -3 unskilled)"
+align = 1
+valign = 1
+
+[node name="list" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS/technology"]
+margin_top = 114.0
+margin_right = 266.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+
+[node name="misc" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS"]
+margin_top = 259.0
+margin_right = 266.0
+margin_bottom = 373.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/SKILLS/misc"]
+margin_top = 45.0
+margin_right = 266.0
+margin_bottom = 64.0
+size_flags_vertical = 6
+text = "label"
+align = 1
+
+[node name="penalty" type="Label" parent="scroll/margin/org/advantages/SKILLS/misc"]
+visible = false
+margin_top = 18.0
+margin_right = 240.0
+margin_bottom = 32.0
+size_flags_vertical = 6
+text = "(-1 Unskilled)"
+align = 1
+valign = 1
+
+[node name="list" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS/misc"]
+margin_top = 114.0
+margin_right = 266.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="scroll/margin/org/advantages/SKILLS"]
+margin_top = 377.0
+margin_right = 266.0
+margin_bottom = 606.0
+size_flags_vertical = 3
+
+[node name="contact" type="VBoxContainer" parent="scroll/margin/org/advantages/SKILLS"]
+margin_top = 610.0
+margin_right = 266.0
+margin_bottom = 677.0
+size_flags_horizontal = 3
+script = ExtResource( 8 )
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/SKILLS/contact"]
+margin_right = 266.0
+margin_bottom = 19.0
+size_flags_stretch_ratio = 0.2
+text = "Contact"
+
+[node name="cat" type="HBoxContainer" parent="scroll/margin/org/advantages/SKILLS/contact"]
+margin_top = 23.0
+margin_right = 266.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+script = ExtResource( 15 )
+
+[node name="email" type="LineEdit" parent="scroll/margin/org/advantages/SKILLS/contact/cat"]
+margin_right = 208.0
+margin_bottom = 20.0
+size_flags_vertical = 11
+text = "mstfacmly@studioslune.com"
+expand_to_text_length = true
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/SKILLS/contact/cat"]
+visible = false
+margin_left = 178.0
+margin_right = 266.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
+
+[node name="cat2" type="HBoxContainer" parent="scroll/margin/org/advantages/SKILLS/contact"]
+margin_top = 47.0
+margin_right = 266.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+script = ExtResource( 15 )
+
+[node name="website" type="LineEdit" parent="scroll/margin/org/advantages/SKILLS/contact/cat2"]
+margin_right = 112.0
+margin_bottom = 20.0
+size_flags_horizontal = 9
+size_flags_vertical = 0
+text = "mstfacmly.com"
+expand_to_text_length = true
+caret_blink = true
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/SKILLS/contact/cat2"]
+visible = false
+margin_left = 178.0
+margin_right = 266.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.5
+
+[node name="container" type="MarginContainer" parent="scroll/margin/org/advantages"]
+margin_left = 270.0
+margin_right = 936.0
+margin_bottom = 680.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="org" type="VBoxContainer" parent="scroll/margin/org/advantages/container"]
+margin_left = 8.0
+margin_right = 666.0
+margin_bottom = 680.0
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org"]
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.1
+text = "Experience"
+align = 1
+uppercase = true
+
+[node name="org" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org"]
+margin_top = 23.0
+margin_right = 658.0
+margin_bottom = 680.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TRAITS" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org"]
+margin_right = 658.0
+margin_bottom = 657.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EXPERIENCE" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS"]
+margin_right = 658.0
+margin_bottom = 553.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE"]
+visible = false
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "Experience"
+align = 1
+valign = 1
+
+[node name="exp1" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE"]
+margin_right = 658.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.39
+
+[node name="exp" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp1"]
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_horizontal = 7
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp1/exp"]
+margin_right = 176.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "Enzyme, A Keywords Lab"
+align = 2
+valign = 1
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp1/exp"]
+margin_left = 180.0
+margin_right = 494.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="label2" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp1/exp"]
+margin_left = 498.0
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "July 2019 -- Present"
+align = 2
+valign = 1
+
+[node name="exp_text" type="RichTextLabel" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp1"]
+margin_top = 23.0
+margin_right = 658.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "[font=res://assets/Bold.tres]FQA Analyst[/font]
+Testing the functionality of the assigned projects, writing and submitting bugs, and assisting co-workers whenever possible.
+
+[font=res://assets/Bold.tres]Test Area Expert[/font]
+Tasks include creating and updating test cases in the assigned areas, and being a point of contact between the developers and the team for the assigned project. It also meant that I was the go-to person when people had a specific question about an area regarding the game's design.
+
+[font=res://assets/Bold.tres]Documentation Writing[/font]
+Participate in the writing, updating, and organizing of Confluence documentation, which included re-vamping certain outdated or scattered information."
+text = "FQA Analyst
+Testing the functionality of the assigned projects, writing and submitting bugs, and assisting co-workers whenever possible.
+
+Test Area Expert
+Tasks include creating and updating test cases in the assigned areas, and being a point of contact between the developers and the team for the assigned project. It also meant that I was the go-to person when people had a specific question about an area regarding the game's design.
+
+Documentation Writing
+Participate in the writing, updating, and organizing of Confluence documentation, which included re-vamping certain outdated or scattered information."
+
+[node name="exp3" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE"]
+margin_top = 185.0
+margin_right = 658.0
+margin_bottom = 366.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.39
+
+[node name="exp" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp3"]
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_horizontal = 7
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp3/exp"]
+margin_right = 112.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "Minority Media"
+align = 2
+valign = 1
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp3/exp"]
+margin_left = 116.0
+margin_right = 438.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="label2" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp3/exp"]
+margin_left = 442.0
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "February 2017 -- March 2017"
+align = 2
+valign = 1
+
+[node name="exp_text" type="RichTextLabel" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp3"]
+margin_top = 23.0
+margin_right = 658.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "Originally brought in as game tester for [url=http://minorityvr.com/]The Other Room[/url], a VR narrative experience set around artificial intelligence and childhood trauma.
+
+Was brought back in one month later as consultant for game and narrative design for the project."
+text = "Originally brought in as game tester for The Other Room, a VR narrative experience set around artificial intelligence and childhood trauma.
+
+Was brought back in one month later as consultant for game and narrative design for the project."
+
+[node name="exp2" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE"]
+margin_top = 370.0
+margin_right = 658.0
+margin_bottom = 553.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.39
+
+[node name="exp" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp2"]
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_horizontal = 7
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp2/exp"]
+margin_right = 104.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "Studios LU/NE"
+align = 2
+valign = 1
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp2/exp"]
+margin_left = 108.0
+margin_right = 494.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="label2" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp2/exp"]
+margin_left = 498.0
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "July 2013 -- Present"
+align = 2
+valign = 1
+
+[node name="exp_text" type="RichTextLabel" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/exp2"]
+margin_top = 23.0
+margin_right = 658.0
+margin_bottom = 183.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "[url=studioslune.com]Independent game studio[/url], which I used to work on full-time. It has since been put on hold. My tasks included, but were not limited to:
+[indent]Game Director[indent]Game, Narrative, and Mechanics designer[/indent]
+Lead 3D Artist [indent]Modeler, Rigger and Animator[/indent]
+Lead Character Designer
+Programmer
+Social Media Manager[/indent]"
+text = "Independent game studio, which I used to work on full-time. It has since been put on hold. My tasks included, but were not limited to:
+	Game Director	Game, Narrative, and Mechanics designer
+Lead 3D Artist 	Modeler, Rigger and Animator
+Lead Character Designer
+Programmer
+Social Media Manager"
+
+[node name="info" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE"]
+visible = false
+margin_top = 395.0
+margin_right = 658.0
+margin_bottom = 438.0
+size_flags_horizontal = 3
+script = ExtResource( 8 )
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/info"]
+margin_right = 658.0
+margin_bottom = 19.0
+size_flags_stretch_ratio = 0.2
+text = "Contact"
+align = 1
+
+[node name="avail" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/EXPERIENCE/info"]
+margin_top = 23.0
+margin_right = 658.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+caret_blink = true
+
+[node name="traits" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS"]
+margin_top = 557.0
+margin_right = 658.0
+margin_bottom = 657.0
+size_flags_stretch_ratio = 0.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits"]
+margin_right = 407.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/VBoxContainer"]
+margin_right = 407.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="RichTextLabel" type="RichTextLabel" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/VBoxContainer"]
+margin_top = 23.0
+margin_right = 407.0
+margin_bottom = 100.0
+focus_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[fill]This sheet was written entirely using the Godot Game Engine. The source code can be seen at
+[url]github.com/mstfacmly/godotresume[/url][/fill]"
+text = "This sheet was written entirely using the Godot Game Engine. The source code can be seen at
+github.com/mstfacmly/godotresume"
+selection_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BACKGROUNDS" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits"]
+margin_left = 411.0
+margin_right = 647.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS"]
+margin_right = 236.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MERITS" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS"]
+visible = false
+margin_top = 71.0
+margin_right = 311.0
+margin_bottom = 114.0
+size_flags_vertical = 5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/MERITS"]
+margin_right = 311.0
+margin_bottom = 19.0
+size_flags_stretch_ratio = 0.2
+text = "Merits"
+align = 1
+
+[node name="merit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/MERITS" instance=ExtResource( 11 )]
+
+[node name="FLAWS" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS"]
+visible = false
+margin_top = 70.0
+margin_right = 598.0
+margin_bottom = 161.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/FLAWS"]
+margin_right = 598.0
+margin_bottom = 19.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+text = "Flaws"
+align = 1
+valign = 1
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/FLAWS"]
+margin_top = 23.0
+margin_right = 598.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 3
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="input2" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/FLAWS"]
+margin_top = 47.0
+margin_right = 598.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 3
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="input3" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/FLAWS"]
+margin_top = 71.0
+margin_right = 598.0
+margin_bottom = 91.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 3
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="OTHER" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS"]
+margin_top = 4.0
+margin_right = 236.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SIZE" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+margin_right = 236.0
+margin_bottom = 20.0
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/SIZE"]
+margin_right = 56.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Size : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/SIZE"]
+margin_left = 60.0
+margin_right = 236.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+expand_to_text_length = true
+placeholder_text = "5 (Adult Human)"
+caret_blink = true
+script = ExtResource( 14 )
+
+[node name="SPEED" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+margin_top = 24.0
+margin_right = 236.0
+margin_bottom = 44.0
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/SPEED"]
+margin_right = 64.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Speed : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/SPEED"]
+margin_left = 68.0
+margin_right = 236.0
+margin_bottom = 20.0
+hint_tooltip = "Strength + Dexterity + Size"
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 2
+editable = false
+caret_blink = true
+
+[node name="DEFENSE" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+margin_top = 48.0
+margin_right = 236.0
+margin_bottom = 68.0
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/DEFENSE"]
+margin_right = 80.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Defense : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/DEFENSE"]
+margin_left = 84.0
+margin_right = 236.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 2
+editable = false
+caret_blink = true
+
+[node name="ARMOR" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+visible = false
+margin_top = 72.0
+margin_right = 236.0
+margin_bottom = 92.0
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/ARMOR"]
+margin_right = 64.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Armor : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/ARMOR"]
+margin_left = 68.0
+margin_right = 236.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 2
+caret_blink = true
+
+[node name="INIT" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+margin_top = 72.0
+margin_right = 236.0
+margin_bottom = 92.0
+hint_tooltip = "Dexterity + Composure"
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/INIT"]
+margin_right = 136.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Initiative Mod : "
+valign = 2
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/INIT"]
+margin_left = 140.0
+margin_right = 236.0
+margin_bottom = 20.0
+hint_tooltip = "Dexterity + Composure"
+size_flags_horizontal = 3
+size_flags_vertical = 0
+align = 2
+editable = false
+caret_blink = true
+
+[node name="BEATS" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+visible = false
+margin_top = 120.0
+margin_right = 317.0
+margin_bottom = 139.0
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_right = 64.0
+margin_bottom = 19.0
+size_flags_vertical = 3
+text = "Beats : "
+valign = 2
+
+[node name="Container" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_left = 68.0
+margin_right = 217.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_left = 221.0
+margin_right = 237.0
+margin_bottom = 19.0
+
+[node name="CheckBox2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_left = 241.0
+margin_right = 257.0
+margin_bottom = 19.0
+
+[node name="CheckBox3" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_left = 261.0
+margin_right = 277.0
+margin_bottom = 19.0
+
+[node name="CheckBox4" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_left = 281.0
+margin_right = 297.0
+margin_bottom = 19.0
+
+[node name="CheckBox5" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER/BEATS"]
+margin_left = 301.0
+margin_right = 317.0
+margin_bottom = 19.0
+
+[node name="sep" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/BACKGROUNDS/OTHER"]
+margin_top = 96.0
+margin_right = 236.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep2" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits"]
+margin_left = 651.0
+margin_right = 658.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="LIFE" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits"]
+visible = false
+margin_left = 548.0
+margin_right = 832.0
+margin_bottom = 424.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HEALTH" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_right = 284.0
+margin_bottom = 60.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH"]
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.01
+text = "Health"
+align = 1
+valign = 1
+
+[node name="values" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH"]
+margin_top = 23.0
+margin_right = 284.0
+margin_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="0" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_right = 20.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/0" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/0" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="1" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/1" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/1" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="2" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/2" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/2" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="3" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 72.0
+margin_right = 92.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/3" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/3" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="4" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 96.0
+margin_right = 116.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/4" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/4" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="5" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 120.0
+margin_right = 140.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/5" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/5" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="6" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 144.0
+margin_right = 164.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/6" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/6" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="7" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 168.0
+margin_right = 188.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/7" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/7" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="8" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 192.0
+margin_right = 212.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/8" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/8" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="9" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 216.0
+margin_right = 236.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/9" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/9" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="10" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 240.0
+margin_right = 260.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/10" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/10" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="11" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values"]
+margin_left = 264.0
+margin_right = 284.0
+margin_bottom = 37.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/11" instance=ExtResource( 12 )]
+margin_left = 4.0
+margin_right = 16.0
+margin_bottom = 12.0
+
+[node name="box" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/HEALTH/values/11" instance=ExtResource( 17 )]
+margin_top = 16.0
+margin_bottom = 37.0
+disabled = true
+
+[node name="WILLPOWER" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_top = 64.0
+margin_right = 284.0
+margin_bottom = 122.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER"]
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.01
+text = "Willpower"
+align = 1
+
+[node name="values" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER"]
+margin_left = 44.0
+margin_top = 23.0
+margin_right = 240.0
+margin_bottom = 58.0
+size_flags_horizontal = 4
+
+[node name="0" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/0" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/0"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="1" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/1" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/1"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="2" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/2" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/2"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="3" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/3" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/3"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="4" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 80.0
+margin_right = 96.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/4" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/4"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="5" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 100.0
+margin_right = 116.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/5" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/5"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="6" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 120.0
+margin_right = 136.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/6" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/6"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="7" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/7" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/7"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="8" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 160.0
+margin_right = 176.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/8" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/8"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="9" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values"]
+margin_left = 180.0
+margin_right = 196.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/9" instance=ExtResource( 12 )]
+margin_left = 2.0
+margin_right = 14.0
+margin_bottom = 12.0
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/WILLPOWER/values/9"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 35.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+disabled = true
+
+[node name="ENERGY" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_top = 126.0
+margin_right = 284.0
+margin_bottom = 191.0
+size_flags_horizontal = 5
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+script = ExtResource( 18 )
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY"]
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.01
+align = 1
+valign = 1
+
+[node name="values" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY"]
+margin_left = 44.0
+margin_top = 23.0
+margin_right = 240.0
+margin_bottom = 65.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="0" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/0"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/0"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="1" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/1"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/1"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="2" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/2"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/2"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="3" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/3"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/3"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="4" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 80.0
+margin_right = 96.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/4"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/4"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="5" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 100.0
+margin_right = 116.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/5"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/5"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="6" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 120.0
+margin_right = 136.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/6"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/6"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="7" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/7"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/7"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="8" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 160.0
+margin_right = 176.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/8"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/8"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="9" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values"]
+margin_left = 180.0
+margin_right = 196.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="check" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/9"]
+margin_right = 16.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="check2" type="CheckBox" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ENERGY/values/9"]
+margin_top = 23.0
+margin_right = 16.0
+margin_bottom = 42.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+disabled = true
+
+[node name="MORAL" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_top = 195.0
+margin_right = 284.0
+margin_bottom = 230.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+alignment = 1
+script = ExtResource( 19 )
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL"]
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.01
+align = 1
+valign = 1
+
+[node name="values" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL"]
+margin_top = 23.0
+margin_right = 284.0
+margin_bottom = 35.0
+alignment = 1
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 64.0
+margin_right = 76.0
+margin_bottom = 12.0
+
+[node name="dot2" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 80.0
+margin_right = 92.0
+margin_bottom = 12.0
+size_flags_vertical = 1
+
+[node name="dot3" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 96.0
+margin_right = 108.0
+margin_bottom = 12.0
+
+[node name="dot4" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 112.0
+margin_right = 124.0
+margin_bottom = 12.0
+
+[node name="dot5" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 128.0
+margin_right = 140.0
+margin_bottom = 12.0
+
+[node name="dot6" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 144.0
+margin_right = 156.0
+margin_bottom = 12.0
+
+[node name="dot7" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 160.0
+margin_right = 172.0
+margin_bottom = 12.0
+
+[node name="dot8" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 176.0
+margin_right = 188.0
+margin_bottom = 12.0
+
+[node name="dot9" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 192.0
+margin_right = 204.0
+margin_bottom = 12.0
+
+[node name="dot10" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/values" instance=ExtResource( 12 )]
+margin_left = 208.0
+margin_right = 220.0
+margin_bottom = 12.0
+
+[node name="valuesVert" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL"]
+visible = false
+margin_top = 39.0
+margin_right = 291.0
+margin_bottom = 265.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+alignment = 1
+
+[node name="0" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_right = 291.0
+margin_bottom = 19.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/0"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/0"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 20 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/0" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="1" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 23.0
+margin_right = 291.0
+margin_bottom = 42.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/1"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/1"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 20 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/1" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="2" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 46.0
+margin_right = 291.0
+margin_bottom = 65.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/2"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/2"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 20 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/2" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="3" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 69.0
+margin_right = 291.0
+margin_bottom = 88.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/3"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/3"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/3" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="4" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 92.0
+margin_right = 291.0
+margin_bottom = 111.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/4"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/4"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/4" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="5" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 115.0
+margin_right = 291.0
+margin_bottom = 134.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/5"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/5"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/5" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="6" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 138.0
+margin_right = 291.0
+margin_bottom = 157.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/6"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/6"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/6" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="7" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 161.0
+margin_right = 291.0
+margin_bottom = 180.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/7"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/7"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/7" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="8" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 184.0
+margin_right = 291.0
+margin_bottom = 203.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/8"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/8"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/8" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="9" type="HBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert"]
+margin_top = 207.0
+margin_right = 291.0
+margin_bottom = 226.0
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.5
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/9"]
+margin_right = 53.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "00"
+align = 2
+
+[node name="sep" type="PanelContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/9"]
+margin_left = 57.0
+margin_right = 233.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 21 )
+
+[node name="dot" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/MORAL/valuesVert/9" instance=ExtResource( 12 )]
+margin_left = 237.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+stretch_mode = 4
+
+[node name="CONDITIONS" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_top = 234.0
+margin_right = 284.0
+margin_bottom = 325.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/CONDITIONS"]
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "Conditions"
+align = 1
+valign = 1
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/CONDITIONS"]
+margin_top = 23.0
+margin_right = 284.0
+margin_bottom = 43.0
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="input2" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/CONDITIONS"]
+margin_top = 47.0
+margin_right = 284.0
+margin_bottom = 67.0
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="input3" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/CONDITIONS"]
+margin_top = 71.0
+margin_right = 284.0
+margin_bottom = 91.0
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="ASPIRATIONS" type="VBoxContainer" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_top = 329.0
+margin_right = 284.0
+margin_bottom = 420.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+alignment = 1
+
+[node name="label" type="Label" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ASPIRATIONS"]
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_vertical = 1
+text = "Aspirations"
+align = 1
+valign = 1
+
+[node name="input" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ASPIRATIONS"]
+margin_top = 23.0
+margin_right = 284.0
+margin_bottom = 43.0
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="input2" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ASPIRATIONS"]
+margin_top = 47.0
+margin_right = 284.0
+margin_bottom = 67.0
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="input3" type="LineEdit" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE/ASPIRATIONS"]
+margin_top = 71.0
+margin_right = 284.0
+margin_bottom = 91.0
+caret_blink = true
+script = ExtResource( 13 )
+
+[node name="pad" type="Control" parent="scroll/margin/org/advantages/container/org/org/TRAITS/traits/LIFE"]
+margin_top = 424.0
+margin_right = 284.0
+margin_bottom = 424.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

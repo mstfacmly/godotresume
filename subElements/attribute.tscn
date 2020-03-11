@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/attributes.gd" type="Script" id=1]
+[ext_resource path="res://subElements/dot.tscn" type="PackedScene" id=2]
+
+[node name="attribute" type="HBoxContainer"]
+margin_right = 238.0
+margin_bottom = 14.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="."]
+margin_right = 86.0
+margin_bottom = 14.0
+size_flags_vertical = 7
+text = "Lorem Ipsum"
+valign = 2
+
+[node name="sep" type="Control" parent="."]
+margin_left = 90.0
+margin_right = 158.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="dots" type="HBoxContainer" parent="."]
+margin_left = 162.0
+margin_right = 238.0
+margin_bottom = 14.0
+size_flags_horizontal = 8
+size_flags_vertical = 5
+
+[node name="dot" parent="dots" instance=ExtResource( 2 )]
+margin_top = 1.0
+margin_bottom = 13.0
+
+[node name="dot2" parent="dots" instance=ExtResource( 2 )]
+margin_left = 16.0
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 13.0
+
+[node name="dot3" parent="dots" instance=ExtResource( 2 )]
+margin_left = 32.0
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 13.0
+
+[node name="dot4" parent="dots" instance=ExtResource( 2 )]
+margin_left = 48.0
+margin_top = 1.0
+margin_right = 60.0
+margin_bottom = 13.0
+
+[node name="dot5" parent="dots" instance=ExtResource( 2 )]
+margin_left = 64.0
+margin_top = 1.0
+margin_right = 76.0
+margin_bottom = 13.0
+[connection signal="toggled" from="dots/dot" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot2" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot3" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot4" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot5" to="." method="_on_dot_toggled"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/skill.gd" type="Script" id=1]
+[ext_resource path="res://scripts/specialties.gd" type="Script" id=2]
+[ext_resource path="res://subElements/dot.tscn" type="PackedScene" id=3]
+
+[node name="skill" type="HBoxContainer"]
+margin_right = 251.0
+margin_bottom = 20.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="check" type="CheckBox" parent="."]
+visible = false
+margin_right = 24.0
+margin_bottom = 24.0
+flat = true
+align = 1
+
+[node name="label" type="Label" parent="."]
+margin_right = 86.0
+margin_bottom = 20.0
+size_flags_vertical = 3
+text = "Lorem Ipsum"
+valign = 2
+
+[node name="SPECIALTIES" type="MenuButton" parent="."]
+margin_left = 90.0
+margin_right = 171.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+flat = false
+script = ExtResource( 2 )
+
+[node name="dots" type="HBoxContainer" parent="."]
+margin_left = 175.0
+margin_right = 251.0
+margin_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 11
+
+[node name="dot" parent="dots" instance=ExtResource( 3 )]
+margin_top = 4.0
+
+[node name="dot2" parent="dots" instance=ExtResource( 3 )]
+margin_left = 16.0
+margin_top = 4.0
+margin_right = 28.0
+
+[node name="dot3" parent="dots" instance=ExtResource( 3 )]
+margin_left = 32.0
+margin_top = 4.0
+margin_right = 44.0
+
+[node name="dot4" parent="dots" instance=ExtResource( 3 )]
+margin_left = 48.0
+margin_top = 4.0
+margin_right = 60.0
+
+[node name="dot5" parent="dots" instance=ExtResource( 3 )]
+margin_left = 64.0
+margin_top = 4.0
+margin_right = 76.0
+[connection signal="toggled" from="dots/dot" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot2" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot3" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot4" to="." method="_on_dot_toggled"]
+[connection signal="toggled" from="dots/dot5" to="." method="_on_dot_toggled"]
