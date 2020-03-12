@@ -7,7 +7,7 @@ var values = {
 	'RIGGING': 4,
 	'RASTER GRAPHICS': 4,
 	'VECTOR GRAPHICS': 3,
-	'VIDEO-EDITING' : 3,
+	'VIDEO EDITING' : 3,
 	'HTML & CSS': 4,
 	'MARKDOWN': 5, 
 	'PYTHON': 3, 

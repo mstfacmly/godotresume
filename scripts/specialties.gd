@@ -1,6 +1,6 @@
 extends MenuButton
 
-signal skillID
+#signal skillID
 
 onready var sheet = get_node('/root/base')
 onready var skillParent = get_parent()

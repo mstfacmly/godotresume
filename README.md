@@ -2,4 +2,4 @@
 
 Made with the [Godot Engine](godotengine.org)
 
-The sheet can be tried out in the browser on my [itch.io](https://mstfacmly.itch.io/w-codsheet) page and will later be released as an Android (and possibly iOS) app.
+Modified Chronicles of Darknes/World of Darkness sheet to act as an interactive resume of sorts.

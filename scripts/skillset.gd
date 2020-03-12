@@ -6,8 +6,6 @@ var skillset
 onready var skill_node = preload("res://subElements/skill.tscn")
 #var skill = {}
 
-signal done
-
 func set_skills():
 	for i in children:
 		$list.get_child(i).add_to_group('saveData')

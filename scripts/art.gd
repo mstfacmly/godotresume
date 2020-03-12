@@ -6,7 +6,7 @@ var skill = [ 'GAME DESIGN',
 'RIGGING',
 'RASTER GRAPHICS',
 'VECTOR GRAPHICS',
-'VIDEO-EDITING' ]
+'VIDEO EDITING' ]
 
 var raster = ['Krita' , 'Adobe Photoshop', 'GIMP']
 var vector = ['Inkscape', 'Adobe Illustrator']
@@ -16,7 +16,7 @@ var animation =  ['Blender', '3DS Max']
 func set_skills():
 	for i in skill:
 		var s = skill_node.instance()
-		s.set_name(str(i))
+		s.set_name(i)
 		$list.add_child(s)
 #		$list.get_child(skill.find(i)).get_node('label').set_text(str(i))
 
@@ -30,3 +30,4 @@ func set_specialties():
 
 func ready():
 	set_specialties()
+	$skill/SPECIALTIES.set_text(str('specialties').capitalize())

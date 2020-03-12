@@ -20,9 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Chronicles of Darkness Sheet"
+config/name="CV Sheet"
 run/main_scene="res://sheet.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
@@ -30,7 +29,6 @@ Global="*res://scripts/global.gd"
 
 [display]
 
-window/size/width=1020
 window/size/height=960
 window/vsync/use_vsync=false
 window/handheld/orientation="portrait"
@@ -61,11 +59,12 @@ common/enable_object_picking=false
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 quality/intended_usage/framebuffer_allocation=1
 quality/intended_usage/framebuffer_allocation.mobile=1
 threads/thread_model=2
-quality/filters/anisotropic_filter_level=1
+vram_compression/import_etc=true
 quality/directional_shadow/size=1
 quality/directional_shadow/size.mobile=256
 quality/shadow_atlas/size=256
@@ -78,11 +77,12 @@ quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/depth_prepass/enable=false
-quality/subsurface_scattering/quality=0
-quality/subsurface_scattering/scale=0
-quality/subsurface_scattering/weight_samples=false
 quality/reflections/atlas_size=0
 quality/reflections/atlas_subdiv=0
 quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
+quality/filters/anisotropic_filter_level=1
+quality/subsurface_scattering/quality=0
+quality/subsurface_scattering/scale=0
+quality/subsurface_scattering/weight_samples=false
 quality/intended_usage/framebuffer_mode=0

@@ -10,7 +10,7 @@ onready var sheet = get_node('/root/base')
 
 func _on_dot_toggled(btn):
 	count(btn)
-	recalculate()
+#	recalculate()
 
 func recalculate():
 	emit_signal('recalc')
@@ -31,15 +31,14 @@ func count(b):
 		for i in val:
 			find_node('dots').get_child(i).set_pressed(0)"""
 
-# warning-ignore:shadowed_variable
-func set_pressed(values):
-	for i in values:
+func set_pressed(vals):
+	for i in vals:
 		get_node('dots').get_child(i).set_pressed(0)
 #	call('save')
 #	sheet.call('save_data')
 
 func _ready():
-#	connect('recalc', sheet, 'calcs')
+	connect('recalc', sheet, 'calcs')
 #	connect('xp_spend', sheet, 'spend_xp')
 #	connect('recalc', health, 'calc_health')
 #		print(is_connected('recalc', sheet, 'calcs'))

@@ -18,6 +18,6 @@ func set_specialties():
 #			skillName.add_to_group('saveData')
 
 func ready():
+	set_specialties()
 	$skill/SPECIALTIES.set_text(str('specialties').capitalize())
 #	print(get_name())
-#	set_specialties()
